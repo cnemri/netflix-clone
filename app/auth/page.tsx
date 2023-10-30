@@ -28,7 +28,7 @@ const AuthPage = (props: Props) => {
         email,
         password,
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
       router.push("/");
     } catch (error) {
@@ -96,7 +96,7 @@ const AuthPage = (props: Props) => {
             </button>
             <div
               onClick={() => {
-                signIn("google", { callbackUrl: "/", redirect: true });
+                signIn("google", { callbackUrl: "/profiles", redirect: true });
               }}
               className="flex flex-row gap-4 items-center mt-8 justify-center"
             >
@@ -105,7 +105,10 @@ const AuthPage = (props: Props) => {
               </div>
               <div
                 onClick={() => {
-                  signIn("github", { callbackUrl: "/", redirect: true });
+                  signIn("github", {
+                    callbackUrl: "/profiles",
+                    redirect: true,
+                  });
                 }}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >

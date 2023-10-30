@@ -6,9 +6,8 @@ import Image from "next/image";
 import React from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 type Props = {};
 
@@ -96,14 +95,18 @@ const AuthPage = (props: Props) => {
               {variant === "login" ? "Sign In" : "Register"}
             </button>
             <div
-              onClick={() => signIn("google", { callbackUrl: "/" })}
+              onClick={() => {
+                signIn("google", { callbackUrl: "/", redirect: true });
+              }}
               className="flex flex-row gap-4 items-center mt-8 justify-center"
             >
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition">
-                <FaGoogle size={30} />
+                <FcGoogle size={30} />
               </div>
               <div
-                onClick={() => signIn("github", { callbackUrl: "/" })}
+                onClick={() => {
+                  signIn("github", { callbackUrl: "/", redirect: true });
+                }}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FaGithub size={30} />

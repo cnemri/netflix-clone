@@ -1,12 +1,10 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/authOptions";
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
+import serverAuth from "@/lib/serverAuth";
 
 export async function GET(request: Request) {
-  const { user } = (await getServerSession(authOptions)) || {};
-  if (!user) return NextResponse.redirect("/auth");
   try {
+    await serverAuth();
     const movies = await prismadb.movie.findMany();
     return NextResponse.json(movies, { status: 200 });
   } catch (error) {

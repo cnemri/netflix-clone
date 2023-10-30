@@ -1,12 +1,10 @@
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/authOptions";
 import prismadb from "@/lib/prismadb";
+import serverAuth from "@/lib/serverAuth";
 
 export async function GET(request: Request) {
   try {
-    const { user } = (await getServerSession(authOptions)) || {};
-    if (!user) return NextResponse.redirect("/auth");
+    await serverAuth();
     const movieCount = await prismadb.movie.count();
     const randomIndex = Math.floor(Math.random() * movieCount);
     const randomMovies = await prismadb.movie.findMany({

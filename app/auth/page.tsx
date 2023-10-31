@@ -30,11 +30,10 @@ const AuthPage = (props: Props) => {
         redirect: false,
         callbackUrl: "/profiles",
       });
-      router.push("/");
     } catch (error) {
       console.log(error);
     }
-  }, [email, password, router]);
+  }, [email, password]);
 
   const register = React.useCallback(async () => {
     try {

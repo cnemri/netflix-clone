@@ -27,7 +27,6 @@ const AuthPage = (props: Props) => {
       await signIn("credentials", {
         email,
         password,
-        redirect: false,
         callbackUrl: "/profiles",
       });
     } catch (error) {

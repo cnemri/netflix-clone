@@ -25,7 +25,7 @@ const AccountMenu = ({ visible }: Props) => {
             className="w-8 rounded-md"
           />
           <p className="text-white text-sm group-hover/item:underline">
-            {currentUser.name}
+            {currentUser?.name}
           </p>
         </div>
         <hr className="bg-gray-800 border-0 h-px my-4" />
